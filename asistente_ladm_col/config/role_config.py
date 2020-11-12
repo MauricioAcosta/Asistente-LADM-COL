@@ -168,6 +168,7 @@ manager_role_gui[TOOLBAR] = [{  # Overwrite list of toolbars
             OBJECT_NAME: 'ladm_col_reports_toolbar',
             ICON: REPORTS_ICON,
             ACTIONS: [
+                ACTION_REPORT_IGAC,
                 ACTION_REPORT_ANNEX_17,
                 ACTION_REPORT_ANT
             ]
@@ -408,6 +409,7 @@ def get_role_config():
                 ACTION_CHANGE_DETECTION_PER_PARCEL,
                 ACTION_ST_LOGIN,
                 ACTION_ST_LOGOUT,
+                ACTION_REPORT_IGAC,
                 ACTION_REPORT_ANNEX_17,
                 ACTION_REPORT_ANT,
                 ACTION_INTEGRATE_SUPPLIES,

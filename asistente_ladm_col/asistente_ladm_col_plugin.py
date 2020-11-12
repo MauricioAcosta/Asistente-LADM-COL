@@ -53,6 +53,7 @@ from asistente_ladm_col.config.enums import (EnumDbActionType,
                                              EnumUserLevel)
 from asistente_ladm_col.config.general_config import (ANNEX_17_REPORT,
                                                       ANT_MAP_REPORT,
+                                                      IGAC_MAP_REPORT,
                                                       DEFAULT_LOG_MODE,
                                                       SUPPLIES_DB_SOURCE,
                                                       PLUGIN_VERSION,
@@ -630,6 +631,12 @@ class AsistenteLADMCOLPlugin(QObject):
                                            self.main_window)
         self._queries_action = QAction(QIcon(":/Asistente-LADM-COL/resources/images/search.png"), QCoreApplication.translate("AsistenteLADMCOLPlugin", "Queries"),
                                        self.main_window)
+
+        self._igac_map_action = QAction(QIcon(":/Asistente-LADM-COL/resources/images/report_annex_17.svg"),
+                                           QCoreApplication.translate("AsistenteLADMCOLPlugin", "IGAC Map"),
+                                           self.main_window)
+        self._igac_map_action.triggered.connect(partial(self.call_igac_map_report_generation, self._context_collected))
+
         self._annex_17_action = QAction(QIcon(":/Asistente-LADM-COL/resources/images/report_annex_17.svg"),
                                         QCoreApplication.translate("AsistenteLADMCOLPlugin", "Annex 17"),
                                         self.main_window)
@@ -666,6 +673,7 @@ class AsistenteLADMCOLPlugin(QObject):
         self._about_action.triggered.connect(self.show_about_dialog)
 
         self.gui_builder.register_actions({
+            ACTION_REPORT_IGAC: self._igac_map_action,
             ACTION_REPORT_ANNEX_17: self._annex_17_action,
             ACTION_REPORT_ANT: self._ant_map_action,
             ACTION_LOAD_LAYERS: self._load_layers_action,
@@ -773,6 +781,8 @@ class AsistenteLADMCOLPlugin(QObject):
             self._ant_map_action.setEnabled(enable)
         elif action_name == ANNEX_17_REPORT:
             self._annex_17_action.setEnabled(enable)
+        elif action_name == IGAC_MAP_REPORT:
+            self._igac_map_action.setEnabled(enable)
 
     def show_message_with_open_table_attributes_button(self, msg, button_text, level, layer, filter):
         self.app.gui.clear_message_bar()  # Remove previous messages before showing a new one
@@ -1042,6 +1052,13 @@ class AsistenteLADMCOLPlugin(QObject):
     @_db_connection_required
     @_survey_model_required
     def call_annex_17_report_generation(self, *args):
+        self.report_generator.generate_report(self.get_db_connection(), ANNEX_17_REPORT)
+
+    @_validate_if_wizard_is_open
+    @_qgis_model_baker_required
+    @_db_connection_required
+    @_survey_model_required
+    def call_igac_map_report_generation(self, *args):
         self.report_generator.generate_report(self.get_db_connection(), ANNEX_17_REPORT)
 
     @_validate_if_wizard_is_open

@@ -189,6 +189,7 @@ class GUI_Config(QObject):
                     OBJECT_NAME: MENU_REPORTS_OBJECTNAME,
                     ICON: REPORTS_ICON,
                     ACTIONS: [
+                        ACTION_REPORT_IGAC,
                         ACTION_REPORT_ANNEX_17,
                         ACTION_REPORT_ANT
                     ]
