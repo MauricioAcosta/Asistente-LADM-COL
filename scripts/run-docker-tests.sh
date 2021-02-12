@@ -22,6 +22,7 @@ chmod u+x /usr/src/scripts/setup-mssql.sh
 
 # rationale: Wait for postgres container to become available
 # link: https://cstan.io/?p=8620&lang=en
+sleep 2
 dig postgres
 nmap -p 5432 postgres
 ping -c 1 postgres
