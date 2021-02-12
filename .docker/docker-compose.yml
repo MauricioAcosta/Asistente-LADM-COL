@@ -1,7 +1,7 @@
 version: '3'
 services:
   postgres:
-    image: kartoza/postgis:10.0-2.4
+    image: kartoza/postgis:13.1
     environment:
       - ALLOW_IP_RANGE="172.0.0.0/8"
       - POSTGRES_USER="usuario_ladm_col"
@@ -12,15 +12,18 @@ services:
     image: microsoft/mssql-server-linux:2017-latest
     environment:
       ACCEPT_EULA: Y
-      SA_PASSWORD: <YourStrong!Passw0rd>
+      SA_PASSWORD: clave_ladm_col
     ports:
       - "1433:1433"
-
   qgis:
-    build: .
+    build:
+      context: ..
+      dockerfile: ./.docker/Dockerfile
+      args:
+        QGIS_TEST_VERSION: ${QGIS_TEST_VERSION}
     tty: true
     volumes:
-      - ${TRAVIS_BUILD_DIR}:/usr/src
+      - ${GITHUB_WORKSPACE}:/usr/src
     depends_on:
       - postgres
       - mssql
