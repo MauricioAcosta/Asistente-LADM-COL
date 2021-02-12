@@ -2,16 +2,11 @@ version: "3"
 services:
   postgres:
     image: kartoza/postgis:13
-    environment:
-      - ALLOW_IP_RANGE="172.0.0.0/8"
-      - POSTGRES_USER="usuario_ladm_col"
-      - POSTGRES_PASS="clave_ladm_col"
-      - POSTGRES_DBNAME="ladm_col"
   mssql:
     image: microsoft/mssql-server-linux:2017-latest
     environment:
       ACCEPT_EULA: Y
-      SA_PASSWORD: Clave_ladm_col_123
+      SA_PASSWORD: docker
     ports:
       - "1433:1433"
   qgis:

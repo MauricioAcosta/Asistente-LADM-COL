@@ -11,7 +11,7 @@ echo "Creating database for test SQL Server"
 export SQLUSER=sa
 export SQLHOST=mssql
 export SQLPORT=1433
-export SQLPASSWORD='Clave_ladm_col_123'
+export SQLPASSWORD='docker'
 
 export PATH=$PATH:/opt/mssql-tools/bin
 
