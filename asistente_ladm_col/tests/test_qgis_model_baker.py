@@ -62,8 +62,8 @@ class TestQgisModelBaker(unittest.TestCase):
         configuration = ExportConfiguration()
         configuration.base_configuration = base_config
         configuration.dbhost = 'postgres'
-        configuration.dbusr = 'docker'
-        configuration.dbpwd = 'docker'
+        configuration.dbusr = 'usuario_ladm_col'
+        configuration.dbpwd = 'clave_ladm_col'
         configuration.database = 'ladm_col'
         configuration.dbschema = 'test_export_data'
         configuration.delete_data = True
@@ -139,8 +139,8 @@ class TestQgisModelBaker(unittest.TestCase):
         configuration = ImportDataConfiguration()
         configuration.base_configuration = base_config
         configuration.dbhost = 'postgres'
-        configuration.dbusr = 'docker'
-        configuration.dbpwd = 'docker'
+        configuration.dbusr = 'usuario_ladm_col'
+        configuration.dbpwd = 'clave_ladm_col'
         configuration.database = 'ladm_col'
         configuration.srs_auth = DEFAULT_SRS_AUTH
         configuration.srs_code = DEFAULT_SRS_CODE
@@ -234,8 +234,8 @@ class TestQgisModelBaker(unittest.TestCase):
         configuration.base_configuration = base_config
         configuration.tool = DbIliMode.ili2pg
         configuration.dbhost = 'postgres'
-        configuration.dbusr = 'docker'
-        configuration.dbpwd = 'docker'
+        configuration.dbusr = 'usuario_ladm_col'
+        configuration.dbpwd = 'clave_ladm_col'
         configuration.database = 'ladm_col'
         configuration.dbschema = 'test_import_schema'
         configuration.tomlfile = TOML_FILE_DIR

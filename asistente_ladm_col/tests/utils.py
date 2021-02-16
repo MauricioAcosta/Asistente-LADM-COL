@@ -49,8 +49,8 @@ from .config.test_config import TEST_SCHEMAS_MAPPING
 DB_HOSTNAME = "postgres"
 DB_PORT = "5432"
 DB_NAME = "ladm_col"
-DB_USER = "docker"
-DB_PASSWORD = "docker"
+DB_USER = "usuario_ladm_col"
+DB_PASSWORD = "clave_ladm_col"
 iface = get_iface()
 asistente_ladm_col_plugin = AsistenteLADMCOLPlugin(iface, True)
 asistente_ladm_col_plugin.initGui()

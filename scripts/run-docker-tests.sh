@@ -22,12 +22,11 @@ chmod u+x /usr/src/scripts/setup-mssql.sh
 
 # rationale: Wait for postgres container to become available
 # link: https://cstan.io/?p=8620&lang=en
-sleep 2
 dig postgres
 nmap -p 5432 postgres
 ping -c 1 postgres
 printf "Wait a moment while loading the database."
-while ! PGPASSWORD='docker' psql -h postgres -U docker -p 5432 postgres -l &> /dev/null
+while ! PGPASSWORD='clave_ladm_col' psql -h postgres -U usuario_ladm_col -p 5432 -l &> /dev/null
 do
   printf "."
   sleep 2
