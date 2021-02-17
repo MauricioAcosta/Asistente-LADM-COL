@@ -1,13 +1,18 @@
 version: "3"
 services:
   postgres:
-    image: kartoza/postgis:10.0-2.4
+    image: kartoza/postgis:13.1
+    volumes:
+      - postgis-data:/var/lib/postgresql
+      - dbbackups:/backups
     environment:
-      - ALLOW_IP_RANGE="172.0.0.0/8"
-      - POSTGRES_USER="usuario_ladm_col"
-      - POSTGRES_PASS="clave_ladm_col"
-      - POSTGRES_DBNAME="ladm_col"
-
+      # If you need to create multiple database you can add coma separated databases eg gis,data
+      - POSTGRES_DB=ladm_col
+      - POSTGRES_USER=usuario_ladm_col
+      - POSTGRES_PASS=clave_ladm_col
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      # Add extensions you need to be enabled by default in the DB. Default are the five specified below
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
   mssql:
     image: microsoft/mssql-server-linux:2017-latest
     environment:
