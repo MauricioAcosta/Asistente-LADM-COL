@@ -1,7 +1,7 @@
 version: "3"
 services:
   postgres:
-    image: kartoza/postgis:13.1
+    image: kartoza/postgis:13-3.1
     volumes:
       - postgis-data:/var/lib/postgresql
       - dbbackups:/backups
@@ -20,7 +20,7 @@ services:
       SA_PASSWORD: <YourStrong!Passw0rd>
     ports:
       - "1433:1433"
-      
+
   qgis:
     build:
       context: ..
@@ -37,3 +37,6 @@ services:
       - postgres
       - mssql
     command: ["/usr/src/scripts/run-docker-tests.sh"]
+volumes:
+  postgis-data:
+  dbbackups:
