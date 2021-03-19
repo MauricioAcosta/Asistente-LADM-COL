@@ -20,11 +20,6 @@ set -e
 chmod u+x /usr/src/scripts/setup-mssql.sh
 /usr/src/scripts/setup-mssql.sh
 
-# rationale: Wait for postgres container to become available
-# link: https://cstan.io/?p=8620&lang=en
-# dig postgres
-# nmap -p 5432 postgres
-# ping -c 1 postgres
 printf "Wait a moment while loading the database."
 for i in {1..15}
 do
@@ -40,5 +35,7 @@ pushd /usr/src/asistente_ladm_col
 make
 cd ..
 export PYTHONPATH=/usr/share/qgis/python/plugins:$PYTHONPATH
-xvfb-run nose2-3  # asistente_ladm_col.tests.test_quality_validations
+# xvfb-run nose2-3 asistente_ladm_col.tests.test_quality_validations
+# xvfb-run nose2-3 asistente_ladm_col.tests.test_qgis_model_baker
+xvfb-run nose2-3 
 popd
